@@ -1,0 +1,63 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Home Page : "+ @Model.Title;
+    var helloWorld = "<b>Hello, world!</b>";
+    var name = "John Doe";
+}
+@{
+    var sum = 32 + 10;
+    var greeting = "Hello, world!";
+    var text = "";
+    for(int i = 0; i < 3; i++)
+    { 
+    text += greeting + " The result is: " + sum + "\n";
+    }
+}
+@{
+    var helloWorld2 = "This is a code block...";
+    @:This is plain text!
+    <br><br>
+    <text>This is plain text as well, and we can
+        even span multiple lines, if needed!</text>
+}
+@{
+    List<string> names = new List<string>()
+    {
+        "John Doe",
+        "Jane Doe",
+        "Joe Doe",
+        "Jenna Doe",
+        "Doggy Doe"
+    };
+}
+<div class="">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>The movie <b>@Model.Title</b> was released @Model.ReleaseDate.ToLongDateString()</p>
+    Hello, @(name.Substring(0,4)). Your age is: <b>@(37 + 5).</b>
+    <p>@helloWorld</p>
+    <p>@Html.Raw(helloWorld)</p>
+    <h2>CodeBlocks</h2>
+    Text: @text<br/>
+    <ul>
+        @for (int i = 0; i < names.Count; i++)
+        {
+            <li>@names[i]</li>
+        }
+    </ul>
+</div>
+@{
+
+    Func<dynamic, object> movieTemplate = @<div>@item.Title [@item.ReleaseDate.ToShortDateString()]</div>;
+
+    List<Movie> movies = new List<Movie>();
+    movies.Add(new Movie() { Title = "The Godfather", ReleaseDate = new DateTime(1972, 3, 24) });
+    movies.Add(new Movie() { Title = "Forrest Gump", ReleaseDate = new DateTime(1994, 7, 6) });
+    movies.Add(new Movie() { Title = "Fight Club", ReleaseDate = new DateTime(1999, 10, 15) });
+
+}
+
+@foreach(var movie in movies)
+{
+    @movieTemplate(movie)
+}
