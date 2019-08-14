@@ -12,7 +12,10 @@ namespace ASP_DotNetCoreLearning.Models
             //return View(movie);
             //return Content("Hello World!");
             //return new EmptyResult();
-            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
+            //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
+            ViewData["RandomMovie"] = movie;
+            ViewBag.RandomMovie = movie;
+            return View();
         }
         public IActionResult Edit(int movieId)
         {
