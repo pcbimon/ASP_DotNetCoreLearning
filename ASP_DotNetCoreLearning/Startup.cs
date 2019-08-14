@@ -59,6 +59,16 @@ namespace ASP_DotNetCoreLearning
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("Products", "Products/{action=Index}/{id?}", new {controller = "Product"});
+                routes.MapRoute(
+                    //Set Route Name*
+                    "MoviesByReleaseDate",
+                    //Set Url Path*
+                    "movies/released/{year}/{month}",
+                    //Set Controller*
+                    new { Controller="Movies" , action = "ByReleaseDate"},
+                    //Regex => Year must be 4 charecter only and Month must be 2 charecter only
+                    new { year = @"\d{4}",month = @"\d{2}"}
+                    );
             });
         }
     }

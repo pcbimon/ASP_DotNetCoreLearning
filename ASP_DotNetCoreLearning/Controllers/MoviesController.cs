@@ -14,5 +14,26 @@ namespace ASP_DotNetCoreLearning.Models
             //return new EmptyResult();
             return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
         }
+        public IActionResult Edit(int movieId)
+        {
+            return Content("id=" + movieId);
+        }
+        //movies
+        public ActionResult Index(int? pageIndex,string sortBy)
+        {
+            if (!pageIndex.HasValue)
+            {
+                pageIndex = 1;
+            }
+            if (string.IsNullOrWhiteSpace(sortBy))
+            {
+                sortBy = "name";
+            }
+            return Content(string.Format("pageIndex={0}&sortBy={1}",pageIndex,sortBy));
+        }
+        public ActionResult ByReleaseDate(int year,int month)
+        {
+            return Content(year + "/" + month);
+        }
     }
 }
