@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ASP_DotNetCoreLearning.Models
 {
@@ -11,9 +7,12 @@ namespace ASP_DotNetCoreLearning.Models
         //GET: Movies/Random
         public IActionResult Random()
         {
-            var movie = new Movie() { Name="Shrek!" };
+            var movie = new Movie() { Name = "Shrek!" };
 
-            return View(movie);
+            //return View(movie);
+            //return Content("Hello World!");
+            //return new EmptyResult();
+            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
         }
     }
 }
