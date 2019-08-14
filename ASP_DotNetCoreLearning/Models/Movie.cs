@@ -7,7 +7,7 @@ namespace ASP_DotNetCoreLearning.Models
 {
     public class Movie
     {
-        public string Title { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
