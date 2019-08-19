@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ASP_DotNetCoreLearning.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ASP_DotNetCoreLearning.Models
 {
@@ -8,14 +10,24 @@ namespace ASP_DotNetCoreLearning.Models
         public IActionResult Random()
         {
             var movie = new Movie() { Name = "Shrek!" };
-
+            var customer = new List<Customer>
+            {
+                new Customer{ Name = "Customer 1" },
+                new Customer{ Name = "Customer 2" },
+            };
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customer = customer,
+            };
             //return View(movie);
             //return Content("Hello World!");
             //return new EmptyResult();
             //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
-            ViewData["RandomMovie"] = movie;
-            ViewBag.RandomMovie = movie;
-            return View();
+            //ViewData["RandomMovie"] = movie;
+            //ViewBag.RandomMovie = movie;
+            var viewResult = new ViewResult();
+            return View(viewModel);
         }
         public IActionResult Edit(int movieId)
         {
